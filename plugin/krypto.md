@@ -108,5 +108,22 @@ The BN128 elliptic curve is defined over 2-dimensional points over the fields of
     syntax Bool ::= isValidPoint(G1Point) [function, hook(KRYPTO.bn128valid)]
                   | isValidPoint(G2Point) [function, klabel(isValidG2Point), hook(KRYPTO.bn128g2valid)]
  // ---------------------------------------------------------------------------------------------------
+```
+
+
+BLS12-381 Curve Functions
+-------------------------
+
+```k
+    syntax BLS12381FrPoint ::= "(" Int "," Int "," Int "," Int ")" [prefer]
+    syntax BLS12381FqPoint ::= "(" Int "," Int "," Int "," Int "," Int "," Int ")" [prefer]
+    syntax BLS12381Fq2Point ::= "(" BLS12381FqPoint "," BLS12381FqPoint ")" [prefer]
+    syntax BLS12381G1Point ::= "(" BLS12381FqPoint "," BLS12381FqPoint "," BLS12381FqPoint ")" [prefer]
+    syntax BLS12381G2Point ::= "(" BLS12381Fq2Point "," BLS12381Fq2Point "," BLS12381Fq2Point ")" [prefer]
+    syntax BLS12381G1Point ::= BLS12381G1Add(BLS12381G1Point, BLS12381G1Point)  [function, hook(KRYPTO.bls12381g1add)]
+ //                    | BLS12381G1Mul(BLS12381G1Point, BLS12381FrPoint)          [function, hook(KRYPTO.bls12381g1mul)]
+ //   syntax BLS12381G2Point ::= BLS12381G2Add(BLS12381G2Point, BLS12381G2Point)  [function, hook(KRYPTO.bls12381g2add)]
+ //                    | BLS12381G2Mul(BLS12381G2Point, BLS12381FrPoint)          [function, hook(KRYPTO.bls12381g2mul)]
+ // ------------------------------------------------------------------------------------------------------------------
 endmodule
 ```
