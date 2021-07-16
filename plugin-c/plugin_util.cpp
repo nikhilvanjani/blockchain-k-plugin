@@ -2,10 +2,9 @@
 
 extern "C" {
 string* allocString(size_t len) {
-  return NULL;
-  // struct string *result = (struct string *)koreAllocToken(len + sizeof(string));
-  // set_len(result, len);
-  // return result;
+  struct string *result = (struct string *)koreAllocToken(len + sizeof(string));
+  set_len(result, len);
+  return result;
 }
 
 string *hexEncode(unsigned char *digest, size_t len) {
