@@ -468,16 +468,7 @@ extern BLS12381G1PointC rust_BLS12_G1MUL(BLS12381G1PointC *p1, BLS12381FrPointC 
 extern BLS12381G1PointC rust_BLS12_G1MULTIEXP(unsigned long bases_len, unsigned long scalars_len, BLS12381G1PointC** c_bases, BLS12381FrPointC** scalars);
 extern BLS12381G2PointC rust_BLS12_G2ADD(BLS12381G2PointC *p1, BLS12381G2PointC *p2);
 
-BLS12381G1PointK *hook_KRYPTO_bls12381g1add(BLS12381FqPointK *p1x, BLS12381FqPointK *p1y, BLS12381FqPointK *p1z,
-                                            BLS12381FqPointK *p2x, BLS12381FqPointK *p2y, BLS12381FqPointK *p2z) {
-  BLS12381G1PointK *p1 = (BLS12381G1PointK *)malloc(sizeof(BLS12381G1PointK));
-  BLS12381G1PointK *p2 = (BLS12381G1PointK *)malloc(sizeof(BLS12381G1PointK));
-  p1->x = p1x;
-  p1->y = p1y;
-  p1->z = p1z;
-  p2->x = p2x;
-  p2->y = p2y;
-  p2->z = p2z;
+BLS12381G1PointK *hook_KRYPTO_bls12381g1add(BLS12381G1PointK *p1, BLS12381G1PointK *p2) {
   BLS12381G1PointC *pp1 = K2C_BLS12381_G1_Point(p1);
   BLS12381G1PointC *pp2 = K2C_BLS12381_G1_Point(p2);
   BLS12381G1PointC pp3 = rust_BLS12_G1ADD(*pp1, *pp2);
